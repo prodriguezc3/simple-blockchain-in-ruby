@@ -54,6 +54,10 @@ end
 def add_block
 	i = 1
 	loop do
+		#Añado el código para la recompensa
+		transactions = get_transactions_data
+    		transactions << { from: "Sistema", to: "Minero123", what: "Recompensa", qty: 10 }
+		
 		instance_variable_set("@b#{i}", Block.next( (instance_variable_get("@b#{i-1}")), get_transactions_data))
 		LEDGER << instance_variable_get("@b#{i}")
 		p "============================"
